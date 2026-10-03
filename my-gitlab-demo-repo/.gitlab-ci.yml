@@ -1,0 +1,25 @@
+stages:
+  - test
+  - deploy
+test_application:
+    stage: test
+    image: ubuntu:24.04
+    script:
+      - test -f index.html
+      - test -f style.css
+      - echo "Application files found successfully"
+deploy_application:
+    stage: deploy
+    image: ubuntu:24.04
+    before_script:
+        - apt-get update -y
+        - apt-get install -y openssh-client
+        - mkdir -p ~/.ssh
+        - cp "$EC2_SSH_KEY" ~/.ssh/ec2_key
+        - chmod 600 ~/.ssh/ec2_key
+        - ssh-keyscan -H "$EC2_HOST" >> ~/.ssh/known_hosts
+    script:
+      - scp -i ~/.ssh/ec2_key index.html style.css "$EC2_USER@$EC2_HOST:/var/www/html/"
+      - ssh -i ~/.ssh/ec2_key "$EC2_USER@$EC2_HOST" "ls -l /var/www/html/"
+    rules:
+      - if: '$CI_COMMIT_BRANCH == "main"'
