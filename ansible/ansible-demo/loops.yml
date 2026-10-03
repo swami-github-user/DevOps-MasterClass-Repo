@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  become: yes
+
+  tasks:
+    - name: create multiple users
+      user: name={{ item }} state=present
+      with_items:
+             - test-user-1
+             - test-user-2
+             - test-user-3
+
+

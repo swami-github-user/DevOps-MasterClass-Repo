@@ -1,0 +1,8 @@
+---
+
+- name: Configuration of JAVA on Webservers
+  hosts: webservers
+  become: yes
+
+  roles:
+    - geerlingguy.java

@@ -1,0 +1,28 @@
+---
+- name: User Configuration
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Create a new user on Managed Nodes
+      user:
+        name: swami14sept26
+   
+    - name: Create an user directory for our new user
+      file:
+        path: /home/swami14sept26/testdir
+        state: directory
+
+    - name: Create a file in testdir directory
+      file:
+        path: /home/swami14sept26/testdir/test.txt
+        state: touch
+
+    - name: Configure File Permissions
+      file:
+        path: /home/swami14sept26/testdir/test.txt
+        owner: ec2-user
+        group: swami14sept26
+        mode: 0733 
+

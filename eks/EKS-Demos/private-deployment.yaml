@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: private-deployment-29-july-2026
+  namespace: mynamespace
+spec:
+  selector:
+    matchLabels:
+      app: "httpd"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - name: private-image
+        image: 759294595201.dkr.ecr.us-east-1.amazonaws.com/eks-demo-12-oct:latest
+        ports:
+        - containerPort: 80

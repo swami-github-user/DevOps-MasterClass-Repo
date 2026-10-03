@@ -1,0 +1,20 @@
+Hello, My Name is {{ user_name | lower }}
+I am from {{ user_location | upper }}
+
+#################################################
+
+
+{% for user in users %}
+Hello {{ user | upper }} !!
+{% endfor %}
+
+
+################################################
+
+{% for item in employee_record %}
+{% if item.role == 'admin' %}
+Hello {{ item.name | upper }} , You are the Administrator of the Company
+{% else %}
+Hello {{ item.name | upper }} , You are not the Administrator
+{% endif %}
+{% endfor %}

@@ -1,0 +1,14 @@
+---
+- hosts: webservers
+  become: yes
+
+  tasks:
+     - name: installation of telnet
+       yum: pkg=telnet state=latest
+       tags:
+         - projectA
+
+     - name: Verify Telnet Installation
+       raw: yum list installed | grep telnet  > /home/ec2-user/pkg.log
+       tags:
+         - verification

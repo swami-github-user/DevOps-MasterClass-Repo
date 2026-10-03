@@ -1,0 +1,14 @@
+---
+- name: uninstalling the package
+  hosts: all
+  become: yes
+  
+  vars:
+     packagename: httpd   
+
+
+  tasks:
+    - name: uninstalling package
+      yum:
+        name: '{{ packagename }}'
+        state: absent

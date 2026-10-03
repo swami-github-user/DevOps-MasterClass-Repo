@@ -1,0 +1,24 @@
+---
+- name: Installing the package and starting the service
+  hosts: '{{ hostname }}'
+  become: yes
+
+  vars_files:
+       - myvariables.yml
+       
+
+  tasks:
+    - name: Installing the package
+      yum:
+        name: '{{ packagename }}'
+        state: latest
+    
+    - name: Copy index.html file to the destination
+      copy:
+        src: '{{ source }}'
+        dest: '{{ destination }}' 
+
+    - name: Start the Service
+      service:
+          name: '{{ packagename }}'
+          state: started

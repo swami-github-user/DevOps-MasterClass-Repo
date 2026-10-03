@@ -1,0 +1,134 @@
+You can determine your shell type using the ps command
+
+
+
+
+
+#!/bin/sh
+# This is a comment!
+echo Hello World        # This is a comment, too!
+
+
+chmod 755 first.sh
+./first.sh
+
+
+#!/bin/sh
+# This is a comment!
+echo "Hello      World"       # This is a comment, too!                
+
+observe the space in output due to being just one argument
+
+
+
+
+
+Variables
+Note that there must be no spaces around the "=" sign
+create var.sh 
+
+#!/bin/sh
+MY_MESSAGE="Hello World"
+echo $MY_MESSAGE
+
+The shell does not care about types of variables; they may store strings, 
+integers, real numbers - anything you like.
+
+#!/bin/sh
+echo What is your name?
+read MY_NAME
+echo "Hello $MY_NAME - hope you're well."
+
+the shell-builtin command read which reads a line from standard input into the variable supplied.
+
+
+
+Loops
+
+we have for and while loops in the Bourne shell. This is somewhat fewer features than other languages, 
+but nobody claimed that shell programming has the power of C.
+
+#!/bin/sh
+for i in 1 2 3 4 5
+do
+  echo "Looping ... number $i"
+done
+
+
+
+#!/bin/sh
+INPUT_STRING=hello
+while [ "$INPUT_STRING" != "bye" ]
+do
+  echo "Please type something in (bye to quit)"
+  read INPUT_STRING
+  echo "You typed: $INPUT_STRING"
+done
+
+
+
+
+The colon (:) always evaluates to true; whilst using this can be necessary sometimes,
+it is often preferable to use a real exit condition
+
+#!/bin/sh
+while :
+do
+  echo "Please type something in (^C to quit)"
+  read INPUT_STRING
+  echo "You typed: $INPUT_STRING"
+done
+
+
+
+
+
+Test is most often invoked indirectly via the if and while statements.
+if there isn't a space there, it won't work
+
+echo "Enter value of X"
+read x
+if [ "$x" -eq "2" ]
+then
+  echo "you have put the right number"
+else
+  echo "you have put the wrong number"
+fi
+
+
+
+
+echo "Enter value of X"
+read x
+
+if  [ "$x" -eq "5" ]; then
+ echo "you have put the number 5"
+ elif [ "$x" -lt "5" ]; then
+   echo "You have put less than 5 number"
+ elif [ "$x" -gt "5" ]; then
+   echo "You have put greater than 5 number"
+ else
+   echo "None of the above"
+fi
+
+
+Functions
+
+echo "Enter the value"
+read x
+
+
+is_odd(){
+  if [ $((x%2)) == 0 ]; then
+     echo "Is Even Number"
+     exit 1
+  else
+     echo "Number is Odd"
+  fi
+}
+
+is_odd $x
+
+
+
+

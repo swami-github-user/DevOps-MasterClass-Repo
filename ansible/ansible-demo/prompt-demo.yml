@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  become: yes
+
+  vars_prompt:
+        - name: pkgname
+          prompt: Please mention the package for installation
+          default: telnet
+          private: no
+ 
+  tasks:
+    - name: Package Installation
+      yum: pkg={{ pkgname }} state=latest

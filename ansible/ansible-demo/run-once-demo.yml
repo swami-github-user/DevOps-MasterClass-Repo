@@ -1,0 +1,8 @@
+---
+- hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Record the Machine Uptime
+      raw: /usr/bin/uptime >> /home/ec2-user/uptimefile
+      run_once: true

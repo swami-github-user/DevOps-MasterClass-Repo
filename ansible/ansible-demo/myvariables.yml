@@ -1,0 +1,5 @@
+---
+hostname: webservers
+packagename: httpd
+source: /home/ec2-user/ansible-demo/index-new.html
+destination: /var/www/html/index.html

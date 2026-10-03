@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "httpd-deployment"
+spec:
+  selector:
+    matchLabels:
+      app: "httpd"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: "httpd"
+    spec:
+      containers:
+      - name: httpd
+        image: 759294595201.dkr.ecr.us-east-1.amazonaws.com/eks-demo-19-dec:latest
+        ports:
+        - containerPort: 80

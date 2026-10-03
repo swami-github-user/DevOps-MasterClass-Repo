@@ -1,0 +1,14 @@
+- name: installing httpd
+  yum:
+    name: httpd
+    state: latest
+    
+- name: Upload index.html file to ec2 destination 
+  copy:
+    src: /home/ec2-user/roles/webserverrole/files/index.html
+    dest: /var/www/html/index.html
+
+- name: start the httpd server
+  service:
+     name: httpd
+     state: started

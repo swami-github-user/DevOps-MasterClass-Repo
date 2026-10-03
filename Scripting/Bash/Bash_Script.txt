@@ -1,0 +1,52 @@
+While "shell script" is a generic term, it often refers to scripts written for the POSIX shell (sh), 
+whereas "bash scripts" are specifically written for the Bourne-Again Shell (bash). 
+Here are key differences with code examples:
+
+1. Arrays (Bash-only feature)
+
+#!/bin/bash
+# Bash script (works)
+fruits=("apple" "banana" "cherry")
+echo ${fruits[1]}  # Outputs "banana"
+
+# POSIX shell script (fails), check with sh
+# Arrays are not supported in basic shell
+
+
+2. String Manipulation
+
+#!/bin/bash
+str="hello world"
+echo ${str^^}  # Outputs "HELLO WORLD" (uppercase conversion)
+
+# POSIX shell would need external commands like:
+echo "$str" | tr '[:lower:]' '[:upper:]'
+
+
+3. Parameter Expansion Features
+#!/bin/bash
+var="hello"
+echo ${var:1:3}  # Outputs "ell" (substring)
+
+# POSIX shell would need:
+echo "$var" | cut -c 2-4
+
+
+4. Brace Expansion
+#!/bin/bash
+echo file.{txt,log}  # Expands to "file.txt file.log"
+
+# Not available in basic shell
+
+
+5. Command History Features
+
+only works in interactive shell sessions. It will not work in scripts.
+!!       # Repeats last command
+!$       # Last argument of previous command
+
+
+6.Special Variables
+# Bash script
+echo ${BASH_VERSION}  # Outputs bash version
+# No equivalent in POSIX shell

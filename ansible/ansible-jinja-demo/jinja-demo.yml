@@ -1,0 +1,38 @@
+---
+
+- name: Demo Playbook for Jinja2 Templating
+  hosts: all
+  
+  vars:
+    
+    user_name: Swami
+    user_location: India
+    user_role: Admin
+
+    users:
+      - produser
+      - devuser
+      - testuser
+      - adminuser
+
+    employee_record:
+      - name: xyz
+        location: Europe
+        role: Admin
+      - name: abc
+        location: US
+        role: Developer
+
+  tasks:
+      - name: write the hostname using Jinja2
+        ansible.builtin.template:
+              src: templates/test.j2
+              dest: test-output.log
+
+
+
+
+
+
+
+

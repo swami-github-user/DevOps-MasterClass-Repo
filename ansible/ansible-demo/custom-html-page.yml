@@ -1,0 +1,20 @@
+---
+- name: Configure httpd server
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Copy the html file to managed nodes destination 
+      copy:
+        src: /home/ec2-user/ansible-demo/index.html
+        dest: /var/www/html
+
+    - name: Start httpd Server
+      service:
+        name: httpd
+        state: started

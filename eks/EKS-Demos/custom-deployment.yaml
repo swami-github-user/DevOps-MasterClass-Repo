@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: custom-deployment-29-july-2026
+  namespace: mynamespace
+spec:
+  selector:
+    matchLabels:
+      app: "httpd"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: httpd
+    spec:
+      containers:
+      - name: custom-image
+        image: public.ecr.aws/j9x0f6u3/my-public-repo-29-july-2026:latest
+        ports:
+        - containerPort: 80

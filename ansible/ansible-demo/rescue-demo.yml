@@ -1,0 +1,22 @@
+---
+- hosts: webservers
+  become: yes
+
+  tasks:
+    - block:
+        - name: Install httpd package
+          yum:
+            name: http
+            state: latest
+      
+      rescue:
+        - name: Install mariadb package
+          yum:
+            name: mariadb-server
+            state: latest
+
+      always:
+        - name: Start the service
+          service:
+              name: mariadb
+              state: started

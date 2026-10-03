@@ -1,0 +1,16 @@
+---
+- hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Status Verification
+      shell: systemctl status httpd
+      register: result
+      until: result.stdout.find("active (running)") != -1
+      retries: 4
+      delay: 5

@@ -1,0 +1,185 @@
+    1  clear
+    2  ls
+    3  sudo hostnamectl set-hostname linux-workstation
+    4  exit
+    5  clear
+    6  exit
+    7  clear
+    8  cd /etc
+    9  ls
+   10  clear
+   11  cat passwd
+   12  wc -l passwd
+   13  wc -w passwd
+   14  clear
+   15  wc /etc/passwd
+   16  clear
+   17  head -n 10 passwd
+   18  tail -n 8 passwd
+   19  clear
+   20  history
+   21  clear
+   22  wc -c passwd
+   23  clear
+   24  cd ..
+   25  clear
+   26  ls
+   27  cd home/
+   28  ls
+   29  cd ubuntu/
+   30  clear
+   31  ls
+   32  pwd
+   33  clear
+   34  mkdir Comedy
+   35  ls
+   36  ls -l
+   37  ls
+   38  mkdir Action Drama
+   39  ls
+   40  clear
+   41  ls
+   42  touch Action1.mp4 Action2.mp4 Action3.mp4
+   43  ls
+   44  touch Comedy1.mp4 Comedy2.mp4 Comedy3.mp4
+   45  touch Drama1.mp4 Drama2.mp4 Drama3.mp4
+   46  ls
+   47  ls -l
+   48  mv Action1.mp4 Action2.mp4 Action3.mp4 Action
+   49  ls
+   50  clear
+   51  ls -l
+   52  cd Action/
+   53  LS
+   54  ls
+   55  cd ..
+   56  cd Action
+   57  cd ..
+   58  clear
+   59  ls
+   60  mv Comedy1.mp4 Comedy2.mp4 Comedy3.mp4 Comedy
+   61  mv Drama1.mp4 Drama2.mp4 Drama3.mp4 Drama
+   62  ls
+   63  cd Drama/
+   64  ls
+   65  cd ..
+   66  clear
+   67  ls -l Action Drama Comedy
+   68  mkdir One Two Three
+   69  ls
+   70  cd One/
+   71  cp ~/Action/Action1.mp4 ~/Comedy/Comedy1.mp4 ~/Drama/Drama1.mp4 .
+   72  ls
+   73  cd ..
+   74  ls -l Action/
+   75  clear
+   76  cd Two/
+   77  cd ..
+   78  ls
+   79  cd Action/
+   80  LS
+   81  ls
+   82  pwd
+   83  cd ..
+   84  cd Two/
+   85  cp /home/ubuntu/Action/Action2.mp4 .
+   86  ls
+   87  cp ~/Comedy/Comedy2.mp4 ~/Drama/Drama2.mp4 .
+   88  ls
+   89  cd ..
+   90  cd Two/
+   91  cd ~
+   92  pwd
+   93  clear
+   94  cd Three/
+   95  cp ~/Action/Action3.mp4 ~/Comedy/Comedy3.mp4 ~/Drama/Drama3.mp4 .
+   96  ls
+   97  cd ..
+   98  ls -l One Two Three
+   99  clear
+  100  ls
+  101  rm One Two Three
+  102  rm -r One Two Three
+  103  ls
+  104  sudo su
+  105  cat /etc/passwd
+  106  id
+  107  clear
+  108  id
+  109  cat /etc/passwd
+  110  id root
+  111  clear
+  112  ls
+  113  cd Action/
+  114  LS
+  115  ls
+  116  ls -l Action1.mp4
+  117  cd ..
+  118  ls -l Action
+  119  ls -ld Action
+  120  clear
+  121  cd /etc/passwd
+  122  cat /etc/passwd
+  123  clear
+  124  cd /etc/
+  125  ls
+  126  cat group
+  127  clear
+  128  cd ..
+  129  useradd swami
+  130  sudo useradd swami
+  131  cat /etc/passwd
+  132  cd ..
+  133  cd /home
+  134  ls
+  135  cd ..
+  136  cd root
+  137  sudo su
+  138  clear
+  139  sudo passwd swami
+  140  clear
+  141  sudo passwd swami
+  142  clear
+  143  cat /etc/passwd
+  144  clear
+  145  sudo groupadd demogroup
+  146  cd /etc/group
+  147  cat /etc/group
+  148  sudo groupdel demogroup
+  149  cat /etc/group
+  150  clear
+  151  cat /etc/group
+  152  sudo groupadd demogroup1
+  153  cat /etc/group
+  154  sudo useradd demouser
+  155  cat /etc/passwd
+  156  clear
+  157  cd /etc
+  158  ls
+  159  cd kernel/
+  160  cd ..
+  161  cat paawsd
+  162  cat passwd
+  163  clear
+  164  cd Action/
+  165  ls -l
+  166  chmod g=rwx Action2.mp4
+  167  ls -l
+  168  chmod u+x Action3.mp4
+  169  ls -l
+  170  chmod o-r Action3.mp4
+  171  ls -l
+  172  chmod o=r Action3.mp4
+  173  ls -l
+  174  clear
+  175  ls -l
+  176  sudo chown root Action1.mp4
+  177  ls -l
+  178  sudo chown root:root Action2.mp4
+  179  ls -l
+  180  sudo chgrp root Action3.mp4
+  181  ls -l
+  182  clear
+  183  history
+  184  touch test.txt
+  185  history >> test.txt

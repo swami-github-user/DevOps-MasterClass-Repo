@@ -1,0 +1,67 @@
+---
+
+- hosts: localhost
+  connection: local
+
+  vars:
+    key_name: my-linux-key-nwkings-5-june-26           # Key used for SSH
+    region: us-east-1      # Region may affect response and pricing
+    image: ami-00adafae70b8029d8 # look in ec2 > ami (filter owner alias: amazon) or amis of manually launched instances
+    id: "Managed-Host"
+    instance_type: t3.micro       # Choose instance type, check AWS for pricing
+    # vpc_id: subnet-012345
+    sec_group: "my-sg-ansible-hosts"
+
+  tasks:
+    - name: Provisioning EC2 instances
+      block:
+
+      - name: Generate SSH keypair
+        openssh_keypair:
+          path: /home/ec2-user/.ssh/id_rsa
+          force: yes
+
+      - name: Get the public key
+        shell: cat /home/ec2-user/.ssh/id_rsa.pub
+        register: pubkey
+        
+
+      - name: Create security group
+        amazon.aws.ec2_security_group:
+          name: "{{ sec_group }}"
+          description: "Sec group for app"
+          region: "{{ region }}"
+          rules:                                # allows ssh on port 22
+            - proto: tcp
+              ports:
+                - 22
+              cidr_ip: 0.0.0.0/0
+              rule_desc: allow all on ssh port
+
+      - name: Start an instance with a public IP address
+        amazon.aws.ec2_instance:
+          name: "Managed-Host"
+          key_name: "{{ key_name }}"
+          # vpc_subnet_id: "{{ vpc_id }}"
+          instance_type: "{{ instance_type }}"
+          security_group: "{{ sec_group }}"
+          region: "{{ region }}"
+          count: 2 
+          network_interfaces:
+            - assign_public_ip: true
+          image_id: "{{ image }}"
+          user_data: |
+                  #!/bin/bash
+                  echo "{{ pubkey.stdout }}" >> /home/ec2-user/.ssh/authorized_keys
+          tags:
+            Environment: Prod
+        register: ec2var
+
+
+      - name: Make ansible directory
+        file:
+          path: /etc/ansible
+          state: directory
+        become: yes
+
+    
